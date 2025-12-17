@@ -99,7 +99,7 @@ class MainFrame(wx.Frame):
     # Get_top_colors method
     def get_top_colors(self, pil_img, n=5):
         # Accept either a PIL.Image or a wx.Image
-        # If it's a wx.Image, convert to PIL.Image (respect alpha if present)
+        # If it's a wx.Image, convert to PIL.Image
         if hasattr(pil_img, 'GetData') and hasattr(pil_img, 'GetWidth'):
             w, h = pil_img.GetWidth(), pil_img.GetHeight()
             if pil_img.HasAlpha():
@@ -143,7 +143,6 @@ class MainFrame(wx.Frame):
     # On_show_colors event handler
     def on_show_colors(self, evt):
         if self.show_colors.GetValue():
-            #self.SetSize((self.GetSize().GetWidth() + 200, self.GetSize().GetHeight() + 1))
             if self.curr_img is None:
                 wx.MessageBox('Open an image first', 'Info', wx.ICON_INFORMATION)
                 return
@@ -152,7 +151,6 @@ class MainFrame(wx.Frame):
             frame.Show()
         
         else:
-            #self.SetSize((self.GetSize().GetWidth() - 200, self.GetSize().GetHeight() + 1))
             # Close the palette frame if it exists
             for child in self.GetChildren():
                 if isinstance(child, PaletteFrame):
@@ -198,7 +196,6 @@ class PaletteFrame(wx.Frame):
         # Optionally set the height to match the parent image height, if available
         desired_height = self.GetSize().GetHeight()
         desired_width = self.GetSize().GetWidth()
-        # Try to match parent's image height
 
         # Calculate width based on swatch size and the widest label (plus padding)
         desired_width = max(desired_width, swatch_size + label_max_width + 40)
@@ -211,3 +208,4 @@ class PaletteFrame(wx.Frame):
 app = wx.App()
 frame = MainFrame(None, title="wx.Image Processing")
 app.MainLoop()    
+
