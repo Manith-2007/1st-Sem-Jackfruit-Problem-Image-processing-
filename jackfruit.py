@@ -159,8 +159,6 @@ class MainFrame(wx.Frame):
 
 class PaletteFrame(wx.Frame):
     def __init__(self, parent, colors, size=None):
-        # Compute a size that fits the color swatches and, if possible, match
-        # the height to the parent's image height (so it visually lines up)
         super().__init__(parent, title='Palette - Top Colors', size=size or wx.DefaultSize)
         panel = wx.Panel(self)
 
@@ -193,7 +191,7 @@ class PaletteFrame(wx.Frame):
         sizer.Fit(self)
         self.Layout()
 
-        # Optionally set the height to match the parent image height, if available
+        # Optionally set the height to match the parent image height
         desired_height = self.GetSize().GetHeight()
         desired_width = self.GetSize().GetWidth()
 
@@ -208,4 +206,5 @@ class PaletteFrame(wx.Frame):
 app = wx.App()
 frame = MainFrame(None, title="wx.Image Processing")
 app.MainLoop()    
+
 
